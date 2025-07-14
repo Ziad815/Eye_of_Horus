@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Place Order</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><h1 style="margin: auto;">Order Now</h1></header>
+
+    <form class="order-form" method="POST" action="submit_order.php">
+        <h2>Select Products</h2>
+      
+        <!-- 🔥 Camera Product -->
+        <div class="product-order">
+          <img src="images/cam.jpg" alt="Camera" width="100%">
+          <h3>Fire Protection with Camera</h3>
+          <p>Price: $200</p>
+          <input type="number" name="cam_qty" placeholder="Quantity" min="0" value="0" onchange="updateAllTotals()">
+        </div>
+      
+        <!-- 🔥 Sensor Product -->
+        <div class="product-order">
+          <img src="images/sensor.jpg" alt="Sensor" width="100%">
+          <h3>Fire Protection with Sensor</h3>
+          <p>Price: $15</p>
+          <input type="number" name="sensor_qty" placeholder="Quantity" min="0" value="0" onchange="updateAllTotals()">
+        </div>
+      
+        <!-- 🔌 Electricity Product -->
+        <div class="product-order">
+          <img src="images/electricity.jpg" alt="Electricity Saving" width="100%">
+          <h3>Electricity Saving System</h3>
+          <p>Price: $10</p>
+          <input type="number" name="electricity_qty" placeholder="Quantity" min="0" value="0" onchange="updateAllTotals()">
+        </div>
+      
+        <!-- 📍 Customer Info -->
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="location" placeholder="Your Location" required>
+      
+        <h3>Total: <span id="grandTotal">$0.00</span></h3>
+        <button type="submit">Submit Order</button>
+      </form>
+      <script>
+        function updateAllTotals() {
+          const camQty = parseInt(document.querySelector('[name="cam_qty"]').value) || 0;
+          const sensorQty = parseInt(document.querySelector('[name="sensor_qty"]').value) || 0;
+          const elecQty = parseInt(document.querySelector('[name="electricity_qty"]').value) || 0;
+      
+          const camPrice = 200;
+          const sensorPrice = 15;
+          const elecPrice = 10;
+      
+          const total = (camQty * camPrice) + (sensorQty * sensorPrice) + (elecQty * elecPrice);
+          document.getElementById("grandTotal").innerText = "$" + total.toFixed(2);
+        }
+      
+        // Run once on page load
+        updateAllTotals();
+      </script>
+      
+</body>      
