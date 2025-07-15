@@ -109,6 +109,9 @@ body {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .left-side img {
+      width: 50px;
+  }
   .nav-links {
     display: none;
     flex-direction: column;
