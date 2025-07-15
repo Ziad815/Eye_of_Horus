@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Place Order</title>
+  <link rel="stylesheet" href="order.css" />
+  <link rel="icon" href="images/eye_of_horus_yellow_11.jpg.png" sizes="32x32" type="image/x-icon">
+</head>
+
+<body>
+  <header>
+    <div id="head">
+    <h1 style="margin: auto;">Order Now</h1>
+    </div>
+  </header>
+
+  <form class="order-form" method="POST" action="submit_order.php">
+    <img id="productImage" src="" alt="Product Image" width="100%">
+
+    <!-- Product Name and Price Display -->
+    <h2 id="productName"></h2>
+    <p>Price: <strong id="productPrice">$0.00</strong></p>
+
+    <!-- Hidden Inputs for PHP -->
+    <input type="hidden" name="product" id="hiddenProduct">
+    <input type="hidden" name="price" id="hiddenPrice">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="text" name="location" placeholder="Your Location" required>
+
+    <input type="number" id="quantity" name="quantity" value="1" min="1" onchange="updateTotal()">
+    <p>Total: <strong id="total">$0.00</strong></p>
+
+    <button type="submit">Submit Order</button>
+  </form>
+
+
+  <footer>
+    &copy; 2025 Eye of Horus. All rights reserved.
+  </footer>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+const product = urlParams.get("product");
+
+const products = {
+    cam: {
+        name: "Fire Protection with Camera",
+        price: 200,
+        image: "images/cam.jpg"
+    },
+    sensor: {
+        name: "Fire Protection with Sensor",
+        price: 15,
+        image: "images/sensor.jpg"
+    },
+    electricity: {
+        name: "Electricity Saving System",
+        price: 10,
+        image: "images/electricity.jpg"
+    }
+};
+
+const image = document.getElementById("productImage");
+const nameEl = document.getElementById("productName");
+const priceEl = document.getElementById("productPrice");
+const totalEl = document.getElementById("total");
+const quantityEl = document.getElementById("quantity");
+const hiddenProduct = document.getElementById("hiddenProduct");
+const hiddenPrice = document.getElementById("hiddenPrice");
+
+if (products[product]) {
+    const item = products[product];
+
+    image.src = item.image;
+    nameEl.innerText = item.name;
+    priceEl.innerText = "$" + item.price.toFixed(2);
+    totalEl.innerText = "$" + (item.price * quantityEl.value).toFixed(2);
+    hiddenProduct.value = item.name;
+    hiddenPrice.value = item.price;
+}
+
+function updateTotal() {
+    const price = parseFloat(hiddenPrice.value);
+    const qty = parseInt(quantityEl.value);
+    totalEl.innerText = "$" + (price * qty).toFixed(2);
+}
+  </script>
+</body>
+
+</html>
