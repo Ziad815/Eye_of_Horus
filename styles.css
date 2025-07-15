@@ -109,7 +109,7 @@ body {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .left-side img {
+  .left-side .logo {
       width: 50px;
   }
   .nav-links {
