@@ -412,15 +412,15 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
   .logo {
-    width: 200px;
+    width: 70px;
   }
   .brand-text h1 {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
   }
   .brand-text p {
     color: white;
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   .desktop-nav {
     display: none;
