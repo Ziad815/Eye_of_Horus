@@ -109,6 +109,9 @@ body {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .boxes {
+      width: 100%;
+  }
   .left-side .logo {
       width: 50px;
   }
